@@ -1,0 +1,23 @@
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form method="post" asp-controller="Account" asp-action="Login">
+    <div class="mb-3">
+        <label class="form-label">Felhasználónév</label>
+        <input type="text" class="form-control" asp-for=UserName />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Jelszó</label>
+        <input type="text" class="form-control" asp-for="Password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Bejelentkezés
+    </button>
+</form>

@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using UserManager.DataAccess.Model;
+@using UserManager.BusinessLogic.DTO;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model UserEditDto
+
+
+@{
+    var result = ViewData["Message"]?.ToString();
+}
+
+<h1 clss="mb-3"> Szerkesztés</h1>
+
+
+<form method="post">
+
+    @if (!string.IsNullOrEmpty(result))
+    {
+        <div class="alert alert-success" role="alert">
+            @result
+        </div>
+    }
+
+    <div class="mb-3">
+        <label class="form-label">Felhasználónév</label>
+        <input type="text" class="form-control" asp-for="User.UserName" readonly/>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" asp-for="User.Email" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Vezetéknév</label>
+        <input type="text" class="form-control" asp-for="User.LastName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Keresztnév</label>
+        <input type="text" class="form-control" asp-for="User.FirstName" />
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary"
+                asp-controller="Account" asp-action="Edit">Mentés
+        </button>
+   
+        @if (User.IsInRole("Admin"))
+        {
+            <button type="submit" class="btn btn-danger"
+                    asp-controller="Account" asp-action="Delete">
+                    Törlés
+            </button>
+
+        }
+
+        
+    </div>
+    
+</form>

@@ -1,0 +1,47 @@
+﻿
+@model UserManager.BusinessLogic.DTO.UserDto
+
+
+@{
+    var result = ViewData["Message"]?.ToString();
+}
+
+<h2 class="mb-3">User felvétele</h2>
+
+<form method="post" asp-controller="Account" asp-action="AddUser">
+
+    @if (!string.IsNullOrEmpty(result))
+    {
+        <div class="alert alert-success" role="alert">
+            @result
+        </div>
+    }
+
+    <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" asp-for="Email" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Felhasználónév</label>
+        <input type="text" class="form-control" asp-for="UserName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Vezetéknév</label>
+        <input type="text" class="form-control" asp-for="LastName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Keresztnév</label>
+        <input type="text" class="form-control" asp-for="FirstName" />
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Mentés</button>
+    </div>
+</form>
+
+
+
+

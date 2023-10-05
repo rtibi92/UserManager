@@ -1,0 +1,47 @@
+﻿@using UserManager.BusinessLogic.DTO;
+@using Microsoft.AspNetCore.Identity
+@using UserManager.DataAccess.Model;
+@model UserListDto
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+}
+<h1 class="mb-3">Userek</h1>
+
+@if (Model.Users != null && Model.Users.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Felhasználónév</th>
+                <th>Vezetéknév</th>
+                <th>Keresztnév</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.FirstName</td>
+
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <td>
+                            <a href="/Account/Edit/@user.UserName" value="@user.UserName" class="btn btn-dark">Szerkesztés</a>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+}
+
+
+
